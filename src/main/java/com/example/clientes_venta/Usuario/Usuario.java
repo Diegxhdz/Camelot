@@ -76,6 +76,9 @@ public class Usuario implements UserDetails {
     
 
     @Enumerated(EnumType.STRING)
+    @Column(
+            nullable = false
+    )
     private Rol rol;
 
     @Override
