@@ -19,7 +19,7 @@ public class RegistroController {
     private PasswordEncoder passwordEncoder;
 
 
-    @PostMapping(value = "req/signup", consumes = "aplication/json")
+    @PostMapping(value = "req/signup", consumes = "application/json")
     public Usuario creaUsuario(@RequestBody Usuario usuario){
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepo.save(usuario);
