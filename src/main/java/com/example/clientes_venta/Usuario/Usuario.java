@@ -1,11 +1,9 @@
 package com.example.clientes_venta.Usuario;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -95,7 +93,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(rol.name()));
+        return rol.getAuthorities();
     }
 
     @Override

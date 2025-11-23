@@ -16,10 +16,10 @@ public class UsuarioService implements UserDetailsService{
     private final UsuarioRepo usuarioRepo;
     
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
         // The application's username is the user's email (Usuario.getUsername() returns email),
         // so look up by email to authenticate correctly.
-        Optional<Usuario> user = usuarioRepo.findByEmail(name);
+        Optional<Usuario> user = usuarioRepo.findByEmail(email);
 
         if (user.isPresent()) {
             var userObj = user.get();
@@ -31,7 +31,7 @@ public class UsuarioService implements UserDetailsService{
                             .toArray(String[]::new))
                     .build();
         } else {
-            throw new UsernameNotFoundException(name);
+            throw new UsernameNotFoundException(email);
         }
     }
 

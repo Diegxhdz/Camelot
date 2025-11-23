@@ -34,6 +34,8 @@ public class ProductoControlador {
         else{
             return productoService.getProductos();
         }
-    }    
+    }  
+    
+    
 
 }

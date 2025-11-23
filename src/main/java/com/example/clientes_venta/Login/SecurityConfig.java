@@ -3,16 +3,17 @@ package com.example.clientes_venta.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.clientes_venta.Usuario.Rol;
 import com.example.clientes_venta.Usuario.UsuarioService;
 
 import lombok.AllArgsConstructor;
@@ -34,13 +35,13 @@ public class SecurityConfig{
     @Bean 
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(usuarioService);
-        provider.setPasswordEncoder(PasswordEncoder());
+        provider.setUserDetailsService(UserDetailsService());
+        provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 
     @Bean
-    public PasswordEncoder PasswordEncoder(){
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -54,6 +55,11 @@ public class SecurityConfig{
             })
             .authorizeHttpRequests(registry -> {
                 registry.requestMatchers("/req/signup").permitAll();
+                registry.requestMatchers("/admin/**").hasRole(Rol.ADMIN.name());
+                registry.requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority("admin:read");
+                registry.requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority("admin:create");
+                registry.requestMatchers(HttpMethod.DELETE, "/admin/**").hasAuthority("admin:delete");
+                registry.requestMatchers(HttpMethod.PUT, "/admin/**").hasAuthority("admin:update");
                 registry.anyRequest().authenticated();
             })
             .build();
