@@ -57,68 +57,51 @@
 
   </header> 
 
-
-  <main>
-
-
-
-  </main>
-
-
-
-  <div id="Iniciar_Sesion">
   
-    <div id="Body">
-      
-      <!-- Barra de Navegación-->
-      <!--<div id="Top_Navbar">
-        <div id="Icon_question_mark_circle">
-          <svg preserveAspectRatio="none" id="Icon" class="pointer-events-none" width="26" height="26"
-            viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M25.6 12.8C25.6 19.8692 19.8692 25.6 12.8 25.6C5.73076 25.6 0 19.8692 0 12.8C0 5.73076 5.73076 0 12.8 0C19.8692 0 25.6 5.73076 25.6 12.8ZM12.8 8C12.2098 8 11.6922 8.31875 11.4131 8.80116C10.9706 9.56606 9.99186 9.82744 9.22696 9.38497C8.46207 8.9425 8.20069 7.96374 8.64316 7.19884C9.47068 5.76829 11.0213 4.8 12.8 4.8C15.451 4.8 17.6 6.94903 17.6 9.6C17.6 11.69 16.2643 13.4679 14.4 14.1269V14.4C14.4 15.2837 13.6837 16 12.8 16C11.9164 16 11.2 15.2837 11.2 14.4V12.8C11.2 11.9163 11.9164 11.2 12.8 11.2C13.6837 11.2 14.4 10.4837 14.4 9.6C14.4 8.71634 13.6837 8 12.8 8ZM12.8 20.8C13.6837 20.8 14.4 20.0837 14.4 19.2C14.4 18.3163 13.6837 17.6 12.8 17.6C11.9163 17.6 11.2 18.3163 11.2 19.2C11.2 20.0837 11.9163 20.8 12.8 20.8Z"
-              fill="#64748B"></path>
-          </svg>
-        </div>
-      </div>-->
-      
-     
+  <main>
+    <section id="Iniciar_Sesion">
 
-       <!-- Texto de Inicio -->
-        <span id="_571_837" class="pointer-events-none"><span id="__1" class="text">Iniciar Sesión</span></span>
-        <span id="_571_838" class="pointer-events-none"><span id="__2" class="text">Accede a tus puntos de venta</span></span>
-        <span id="_571_857">
-          <span id="__3">
-            <span id="__4" class="text">Aún no tienes cuenta? </span>
-              <a href="/registro.html" style="text-decoration: underline; color: #000;">
-            <span id="__5" class="text">Registrarme</span>
-          </a>
-
+      <section id = 'Log-in-Titulo'>
+        
+          <span id="Title" class="pointer-events-none"><span id="__1" class="text">Iniciar Sesión</span></span>
+          <span id="SubTitle" class="pointer-events-none"><span id="__2" class="text">Accede a tus puntos de venta</span></span>
+          
+          <!--Seccion de textos, superiores e inferiores-->
+          <span id="Crear_Cuenta">
+            <span id="__3">
+              <span id="__4" class="text">Aún no tienes cuenta? </span>
+                <a href="registro.html" style="text-decoration: underline; color: #000;">
+              <span id="__5" class="text">Registrarme</span>
+            </a>
+        
+          </span>
         </span>
-      </span>
-
-    </div>
-
-    <!-- Formulario  -->
-    <form id="login-form">
-
-      <div id="Table_Header">
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-      </div>
-      
-      <div id="Table_Header_0">
-        <input type="password" id="password" placeholder="Contraseña" required>
-      </div>
+        
+      </section>
     
-    </form>
-
-    <button id="Button">
-      <span id="I571_853_3_18" ><span id="__8" class="text">Iniciar Sesión</span></span>
-    </button>
+      <section id="login-content">
+        
+        <form  action="./JS/Login" id="login-form">
     
-  </div>
+        <div id="Table_Header">
+          <input type="email" id="email" placeholder="Correo electrónico" required>
+        </div>
+        
+        <div id="Table_Header_0">
+          <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+          
+          </form>
+        
+        <button id="Button">
+            <span id="__8" class="text">Iniciar Sesión</span>
+        </button>
+
+      </section>
 
 
+    </section>
+  </main>
 
 
 </body>
