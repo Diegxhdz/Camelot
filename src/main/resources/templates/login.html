@@ -25,10 +25,10 @@
   <meta name="viewport" content="width=device-width">
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link rel="stylesheet" href="/css/styles/Login.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/login.css}">
 
-  </script>
-  <script src="../__assets/runtime-9cb008d88f0d2498de069d7e0f61e223f992206b.js"></script>
+  <script th:src="@{/js/signup.js}"></script>
 
 </head>
 
@@ -81,21 +81,21 @@
     
       <section id="login-content">
         
-        <form  action="js/Login" id="login-form">
-    
+        <form action="/login" method="post" id="login-form">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
         <div id="Table_Header">
-          <input type="email" id="email" placeholder="Correo electrónico" required>
+          <input type="email" id="email" name="username" placeholder="Correo electrónico" required>
         </div>
         
         <div id="Table_Header_0">
-          <input type="password" id="password" placeholder="Contraseña" required>
+          <input type="password" id="password" name="password" placeholder="Contraseña" required>
         </div>
           
-          </form>
-        
-        <button id="Button">
+        <button id="Button" type="submit">
             <span id="__8" class="text">Iniciar Sesión</span>
         </button>
+        </form>
 
       </section>
 

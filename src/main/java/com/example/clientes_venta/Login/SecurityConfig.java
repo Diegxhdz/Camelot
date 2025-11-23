@@ -47,15 +47,15 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)throws Exception{
         return httpSecurity
-            .formLogin(httpForm ->
-                    {httpForm.loginPage("/login").permitAll();
-                     httpForm.defaultSuccessUrl("/home");
-                    })
-                    .authorizeHttpRequests(registry ->{
-                        registry.requestMatchers("/req/signup").permitAll();
-                        registry.anyRequest().authenticated();
-                    })
-                    
-                    .build();
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/req/signup"))
+            .formLogin(httpForm -> {
+                httpForm.loginPage("/login").permitAll();
+                httpForm.defaultSuccessUrl("/home");
+            })
+            .authorizeHttpRequests(registry -> {
+                registry.requestMatchers("/req/signup").permitAll();
+                registry.anyRequest().authenticated();
+            })
+            .build();
     }
 }

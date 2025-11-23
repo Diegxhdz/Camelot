@@ -1,6 +1,5 @@
 package com.example.clientes_venta.Usuario;
 
-import java.lang.foreign.Linker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,14 +17,20 @@ public class UsuarioService implements UserDetailsService{
     
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException{
-        Optional <Usuario> user = usuarioRepo.findByName(name);
+        // The application's username is the user's email (Usuario.getUsername() returns email),
+        // so look up by email to authenticate correctly.
+        Optional<Usuario> user = usuarioRepo.findByEmail(name);
 
         if (user.isPresent()) {
             var userObj = user.get();
-            return User.builder().username(userObj.getUsername()).password(userObj.getPassword())
-            .build();
-        }
-        else{
+            return User.builder()
+                    .username(userObj.getUsername())
+                    .password(userObj.getPassword())
+                    .roles(userObj.getAuthorities().stream()
+                            .map(a -> a.getAuthority())
+                            .toArray(String[]::new))
+                    .build();
+        } else {
             throw new UsernameNotFoundException(name);
         }
     }

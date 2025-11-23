@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <title>Registro</title>
   <link rel="canonical" href="index.html">
-  <link rel="stylesheet" href="/css/styles/signup.css">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/signup.css}">
 
   <meta name="description" content="Created with figma.to.website">
   <meta property="og:url" content="index.html">
@@ -32,7 +33,7 @@
   <script></script>
   <script>window.F2W_REACTIONS = (() => { const n = []; return {} })(), window.F2W_VARIABLES = {}, window.F2W_COLLECTION_VARS = {}, window.F2W_COLLECTION_MODE_BPS = {}, window.F2W_COLOR_SCHEMES = void 0, window.F2W_LANGUAGES = void 0;
   </script>
-  <script src="/js/signup.js" defer></script>
+  <script th:src="@{/js/signup.js}" defer></script>
   <script src="../__assets/runtime-9cb008d88f0d2498de069d7e0f61e223f992206b.js"></script>
  
 
@@ -118,38 +119,45 @@
 
 
   <script>
-    const submitButttom = document.getElementById("submit");
-    submitButttom.addEventListener('click',()=>{
-    const username = document.getElementById('nombre').value;
-    const password = document.getElementById('contraseña').value;
-    const confirmPassword = document.getElementById('confirmar-con').value;
-    const email = document.getElementById('correo').value;
-    const data ={
-      username,
-      email,
-      password
-    }
-    
-    if(password == confirmPassword){
+    const submitButton = document.getElementById("submit");
+    submitButton.addEventListener('click',(e)=>{
+      e.preventDefault();
+      const name = document.getElementById('nombre').value;
+      const password = document.getElementById('contraseña').value;
+      const confirmPassword = document.getElementById('confirmar-con').value;
+      const email = document.getElementById('email').value;
 
-      //Aqui lo manda az la base de datos de Json pero de su programa, hay q hacer que lo haga en el nuestro
-      const jsonData = JSON.stringify(data);
+      if(password !== confirmPassword){
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+
+      const data = {
+        name: name,
+        email: email,
+        password: password,
+        rol: "USER"
+      };
+
       fetch('/req/signup', {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json'
         },
-        body: jsonData
+        body: JSON.stringify(data)
       })
       .then(response =>{
-        //alert('succesfull');
-        //if(response.status == 200){
-          //alert('succesfull');
-        //xs}
+        if(response.ok){
+          alert('Registro exitoso');
+          window.location.href = '/login';
+        } else {
+          response.text().then(t => alert('Error: ' + t));
+        }
       })
-    }
-    
-  })
+      .catch(err => {
+        alert('Error de red: ' + err);
+      });
+    });
   </script>
 </body>
 

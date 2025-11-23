@@ -58,16 +58,6 @@ public class Usuario implements UserDetails {
             nullable = false
     )
     private String email;
-    @Column(
-            nullable = false
-    )
-    private Integer age;
-
-    @Column(
-            nullable = false
-    )
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
 
     @Column(
             nullable = false
@@ -86,12 +76,12 @@ public class Usuario implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(name, usuario.name) && Objects.equals(email, usuario.email) && Objects.equals(age, usuario.age) && gender == usuario.gender;
+        return Objects.equals(id, usuario.id) && Objects.equals(name, usuario.name) && Objects.equals(email, usuario.email) && Objects.equals(password, usuario.password) && rol == usuario.rol;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, age, gender);
+        return Objects.hash(id, name, email);
     }
 
     @Override
@@ -100,8 +90,6 @@ public class Usuario implements UserDetails {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
                 '}';
     }
 
