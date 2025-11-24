@@ -1,0 +1,47 @@
+package com.example.clientes_venta.Usuario;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
+@Component
+public class UsuarioService implements UserDetailsService{
+
+    private final UsuarioRepo usuarioRepo;
+    
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+        // The application's username is the user's email (Usuario.getUsername() returns email),
+        // so look up by email to authenticate correctly.
+        Optional<Usuario> user = usuarioRepo.findByEmail(email);
+
+        if (user.isPresent()) {
+            var userObj = user.get();
+            return User.builder()
+                    .username(userObj.getUsername())
+                    .password(userObj.getPassword())
+                    .roles(userObj.getAuthorities().stream()
+                            .map(a -> a.getAuthority())
+                            .toArray(String[]::new))
+                    .build();
+        } else {
+            throw new UsernameNotFoundException(email);
+        }
+    }
+
+    @Autowired
+    public UsuarioService(UsuarioRepo usuarioRepo){
+        this.usuarioRepo=usuarioRepo;
+    }
+
+    public List<Usuario> getUsuarios(){ 
+        return usuarioRepo.findAll();
+    }
+    
+}

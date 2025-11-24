@@ -1,0 +1,336 @@
+/* ==================== Tipografía - Inter ==================== */
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwY.woff2) format("woff2");
+}
+
+/* ==================== Reset y Base ==================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f0f2f5; /* Un gris muy claro para el fondo general si es visible */
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+button {
+    color: inherit;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+}
+
+/* ==================== Scrollbar Hide ==================== */
+body * {
+    scrollbar-width: none;
+}
+
+body ::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==================== Layout Principal ==================== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff; /* El blanco del contenido principal */
+    width: 100%; /* Ocupa el 100% del viewport */
+    max-width: 100vw;
+}
+
+/* ==================== Sidebar ==================== */
+.sidebar {
+    width: 250px; /* Ancho ajustado para que coincida mejor */
+    background-color: #080325;
+    color: #cbcfd5; /* Color por defecto de los elementos no activos */
+    display: flex;
+    flex-direction: column;
+    padding: 0 18px 20px; /* Ajuste de padding */
+    flex-shrink: 0;
+    position: relative;
+    /* La altura se ajustará con min-height de app-container */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0 24px 10px; /* Ajuste de padding izquierdo */
+    margin-bottom: 25px; /* Espacio debajo del header */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+    height: 90px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -1px;
+    color: #fff; /* El texto del logo es blanco */
+}
+
+.logo-icon-placeholder {
+    width: 25px;
+    height: 30px;
+    background-color: white; /* Color de fondo del icono pequeño */
+    border-radius: 5px; /* Forma más ovalada/rectángulo redondeado */
+    margin-right: 8px;
+    position: relative;
+}
+.logo-icon-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px; /* Tamaño del icono "interno" si fuera un SVG */
+    height: 18px;
+    background-color: #4f46e5; /* Color del icono "interno" */
+    border-radius: 3px;
+    /* Esto es una simulación. Lo ideal sería un SVG real. */
+}
+
+.menu-toggle {
+    background-color: #4f46e5; /* Azul/púrpura */
+    border-radius: 50%;
+    width: 35px; /* Tamaño más pequeño */
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.1em;
+}
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Espacio entre elementos de navegación */
+    margin-bottom: auto; /* Empuja el footer hacia abajo */
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px; /* Ajuste de padding */
+    gap: 15px; /* Espacio entre icono y texto */
+    text-decoration: none;
+    color: #cbcfd5; /* Color por defecto */
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transición suave */
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-link i {
+    font-size: 1.2em;
+    width: 25px; /* Espacio fijo para el icono */
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Efecto hover */
+.nav-link:not(.active):hover {
+    background-color: #1a1a38; /* Un color más claro al pasar el cursor */
+    color: #fff; /* Texto blanco al pasar el cursor */
+}
+
+/* Estilo para el enlace activo (Configuración) */
+.config-link.active {
+    background-color: #1a1a38; /* El color de fondo del elemento activo */
+    color: #fff; /* El texto del elemento activo es blanco */
+}
+
+.config-link.active i {
+    color: #fff; /* Asegura que el icono también sea blanco */
+}
+
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 20px; /* Espacio entre nav y footer */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separador */
+    padding-top: 20px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px; /* Ajuste de padding */
+    gap: 15px; /* Espacio entre avatar y nombre */
+    background-color: transparent; /* Fondo transparente por defecto */
+    color: #fff; /* Color del texto del perfil */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #4f46e5; /* Color del avatar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* ==================== Contenido Principal ==================== */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff; /* Fondo blanco del área de contenido */
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Ajuste de padding */
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.05); /* Sombra más sutil */
+    flex-shrink: 0; /* No se encoge */
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px; /* Espacio entre iconos */
+    margin-right: auto;
+}
+
+.header-icons i {
+    font-size: 1.3em; /* Tamaño de iconos */
+    color: #888;
+    cursor: pointer;
+}
+
+.help-icon i {
+    font-size: 1.5em;
+    color: #888;
+    cursor: pointer;
+}
+
+.welcome-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 30px 40px; /* Padding del contenido */
+}
+
+.welcome-section h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: left;
+    color: #121212;
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.welcome-section h1 strong {
+    font-weight: 700;
+}
+
+.emoji {
+    font-size: 1em;
+    margin-left: 5px;
+}
+
+/* Área del Logo Central */
+.center-logo-area {
+    position: absolute; /* Posicionamiento absoluto para centrar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espacio entre logo y descripción */
+}
+
+.main-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre icono grande y texto */
+}
+
+.main-logo-icon-placeholder {
+    width: 60px; /* Tamaño del icono grande */
+    height: 70px;
+    background-color: #4f46e5; /* Color del icono */
+    border-radius: 10px; /* Para darle una forma "suave" */
+    position: relative;
+    /* Si fuera un SVG real, se incrustaría aquí */
+}
+/* Simulación de la forma del icono grande si no tienes un SVG */
+.main-logo-icon-placeholder::before,
+.main-logo-icon-placeholder::after {
+    content: '';
+    position: absolute;
+    border: 3px solid white; /* Simula los bordes entrelazados */
+    border-radius: 50%;
+}
+.main-logo-icon-placeholder::before {
+    width: 30px;
+    height: 30px;
+    top: 15px;
+    left: 10px;
+}
+.main-logo-icon-placeholder::after {
+    width: 30px;
+    height: 30px;
+    bottom: 15px;
+    right: 10px;
+}
+
+
+.main-logo-text {
+    color: #080325;
+    font-size: 70px; /* Tamaño del texto grande del logo */
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -2.5px;
+}
+
+.main-description {
+    color: #5b6776;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+}
