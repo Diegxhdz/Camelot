@@ -52,7 +52,7 @@
                 </a>
                 <div class="profile-item">
                     <div class="profile-avatar">DH</div>
-                    <span class="profile-name">Diego Hernandez</span>
+                    <span class="profile-name" th:text="${#authentication.name}"></span>
                 </div>
             </div>
         </aside>
@@ -70,7 +70,7 @@
             </header>
 
             <section class="welcome-section">
-                <h1>Bienvenido <span th:text="${#authentication.name}"></span></h1>
+                <h1>Bienvenido <span th:text="${#authentication.name}"> <span class="emoji">🤝 </span></h1>
 
                 <div class="center-logo-area">
                     <div class="main-logo-container">
