@@ -76,13 +76,13 @@
                     <button onclick="buscar()"></button>
                 </div>
 
-                <div class="clientes-grid">
+                <div class="productos-grid">
                     <div th:each="cliente : ${clientes}" class="cliente-card">
 
                         <h3 th:text="${cliente.name}">Nombre Cliente</h3>
                         <p th:text="'Email: ' + ${cliente.email}">Email</p>
                         <button id="Button" type="submit">
-                            <span id="Button_text" class="text">Agregar al carrito</span>
+                            <span id="Button_text" class="text">Actualizar</span>
                         </button>
                     </div>
                 </div>
