@@ -337,3 +337,217 @@ body ::-webkit-scrollbar {
     line-height: 20px;
     text-align: center;
 }
+
+/* ==================== Catálogo de Productos ==================== */
+
+/* Contenedor principal de la vista de productos */
+.welcome-section {
+    /* Mantenemos el flex-grow: 1, pero ajustamos el padding para el contenido. */
+    padding: 30px 40px; 
+    /* Se elimina el flex-grow: 1 del welcome-section y se usa un contenedor para todo el contenido si es necesario que ocupe todo el espacio.
+    Sin embargo, el h1 "Catálogo de Productos" y el contenido están dentro del welcome-section,
+    así que simplemente ajustamos el padding y el flujo. */
+}
+
+/* Título de la sección */
+.welcome-section h1 {
+    margin-bottom: 30px; /* Más espacio debajo del título para separarlo de la búsqueda */
+}
+
+/* Contenedor del buscador y la cuadrícula */
+.productos-container {
+    flex-grow: 1; /* Permite que este contenedor use el espacio restante */
+}
+
+/* ==================== Buscador ==================== */
+.buscador {
+    display: flex;
+    justify-content: flex-end; /* Alinea la barra de búsqueda a la derecha */
+    align-items: center;
+    margin-bottom: 30px; /* Espacio debajo de la barra de búsqueda */
+    padding-bottom: 20px; /* Pequeño padding para bajarlo de la cabecera */
+    gap: 10px; /* Espacio entre el input y el carrito (aunque el carrito no está en el HTML) */
+}
+
+.buscador input[type="text"] {
+    width: 300px; /* Ancho del campo de búsqueda */
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s;
+}
+
+.buscador input[type="text"]:focus {
+    border-color: #4f46e5;
+    background-color: #fff;
+}
+
+/* Botón de búsqueda (la lupa) */
+.buscador button {
+    background-color: #4f46e5; /* Color de fondo del botón */
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0; /* Asegura que no se achique */
+}
+
+.buscador button:hover {
+    background-color: #3b33b0;
+}
+
+/* El carrito de compras que se ve en la imagen (simulación, ya que no está en el HTML provisto) */
+/* El ícono de carrito de la imagen está al lado derecho del buscador. */
+.cart-icon-container {
+    margin-left: 20px;
+}
+
+.cart-icon-container i {
+    font-size: 1.8em;
+    color: #333;
+}
+
+
+/* Adaptación para que el buscador y el carrito del HTML parezca la imagen */
+/* Como tu HTML no tiene el carrito después del botón de búsqueda, usaremos un truco visual para simular la estructura de la imagen,
+la cual tiene la barra de búsqueda a la derecha y el carrito más a la derecha. */
+.content-header {
+    /* Quitaré el justify-content: space-between para que el header-icons se quede a la izquierda y el help-icon a la derecha. */
+    /* Lo principal es que el layout de la sección de productos ahora dominará. */
+}
+
+/* Estilo para el ícono de carrito de la imagen que está en el header */
+.shopping-cart-icon {
+    font-size: 2em; /* Tamaño similar al de la imagen */
+    color: #333;
+    cursor: pointer;
+    margin-left: 30px; /* Separación de la barra de búsqueda (si estuviera en el mismo contenedor) */
+}
+
+/* Ajuste del header para el estilo de la imagen */
+.content-header {
+    /* El header de la imagen es el que contiene el carrito y las herramientas de multiplayer */
+    /* Tu HTML de header no coincide con la imagen, la imagen tiene la búsqueda y el carrito DENTRO del área de contenido. */
+    /* Para replicar la imagen, **debes mover la búsqueda y el carrito (si lo tienes)** dentro de un contenedor en la parte superior del .productos-container */
+    
+    /* Vamos a simular que el carrito está en el header, como en la imagen */
+    /* El carrito está DENTRO de la sección de productos, no en el content-header */
+}
+
+/* Reajustamos .buscador para incluir la lupa y el carrito, moviendo el carrito al .buscador si quieres ese look exacto */
+
+/* ==================== Cuadrícula de Productos ==================== */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columnas o más, adaptables */
+    gap: 30px; /* Espacio entre las tarjetas */
+    padding-bottom: 40px;
+}
+
+/* ==================== Tarjeta de Producto ==================== */
+.producto-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura si la cuadrícula lo permite */
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.producto-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.producto-card p {
+    font-size: 14px;
+    color: #5b6776;
+    margin-bottom: 5px;
+}
+
+.producto-card p:nth-child(2) { /* Estilo para la línea de "Stock" */
+    margin-top: 10px;
+}
+
+/* Estilo para la imagen (placeholder de la imagen) */
+.producto-card .img-producto {
+    width: 100%;
+    max-width: 150px; /* Máximo ancho de la imagen */
+    height: 150px; /* Altura fija para la imagen */
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Simulando el placeholder de imagen */
+.producto-card::before {
+    content: "img producto";
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Opcional: si ya tienes un <img> que quieres estilizar */
+.producto-card img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+/* ==================== Botón "Agregar al carrito" ==================== */
+.producto-card #Button {
+    background-color: #4f46e5;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: auto; /* Empuja el botón al final de la tarjeta */
+    transition: background-color 0.2s;
+    width: 100%; /* Ocupa todo el ancho de la tarjeta */
+    max-width: 200px; /* Limita el ancho del botón */
+}
+
+.producto-card #Button:hover {
+    background-color: #3b33b0;
+}
