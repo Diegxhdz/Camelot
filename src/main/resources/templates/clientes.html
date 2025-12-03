@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="productos-grid">
-                    <div th:each="cliente : ${clientes}" class="cliente-card">
+                    <div th:each="cliente : ${clientes}" class="producto-card">
 
                         <h3 th:text="${cliente.name}">Nombre Cliente</h3>
                         <p th:text="'Email: ' + ${cliente.email}">Email</p>
